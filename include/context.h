@@ -46,6 +46,13 @@ extern "C"
      */
     int EXPORT now_wait_for_ready(int N, struct now_context *);
 
+    void EXPORT now_context_stop(struct now_context *);
+
+    /**
+     * @return int
+     */
+    int EXPORT now_add_bootstrap_rc(const char *, size_t, struct now_context *);
+
 #ifdef __cplusplus
 }
 #endif
