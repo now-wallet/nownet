@@ -38,6 +38,42 @@ extern "C"
 
     typedef void (*udp_flow_timeout_func)(const struct udp_flowinfo *remote_address, void *flow_userdata);
 
+    /**
+     * @param exposedPort
+     * @param filter
+     * @param recv
+     * @param timeout
+     * @param user
+     * @param result
+     * @param ctx
+     * @return int
+     */
+    int EXPORT udp_bind(uint16_t exposedPort, udp_flow_filter filter, udp_flow_recv_func recv, udp_flow_timeout_func timeout, void *user, struct udp_bind_result *result, struct context *ctx);
+
+    /**
+     * @param create_flow
+     * @param user
+     * @param remote
+     * @param ctx
+     * @return int
+     */
+    int EXPORT udp_establish(udp_create_flow_func create_flow, void *user, const struct udp_flowinfo *remote, struct context *ctx);
+
+    /**
+     * @param remote
+     * @param ptr
+     * @param len
+     * @param ctx
+     * @return int
+     */
+    int EXPORT udp_flow_send(const struct udp_flowinfo *remote, const void *ptr, size_t len, struct context *ctx);
+
+    /**
+     * @param socket_id
+     * @param ctx
+     */
+    void EXPORT udp_close(int socket_id, struct context *ctx);
+
 #ifdef __cplusplus
 }
 #endif
