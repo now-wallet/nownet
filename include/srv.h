@@ -43,6 +43,20 @@ extern "C"
      */
     int EXPORT srv_lookup(char *host, char *service, struct srv_lookup_result *result, struct context *ctx);
 
+    typedef void (*srv_record_iterator)(struct srv_record *, void *);
+
+    /**
+     * @param result
+     * @param iter
+     * @param user
+     */
+    void EXPORT for_each_srv_record(struct srv_lookup_result *result, srv_record_iterator iter, void *user);
+
+    /**
+     * @param result
+     */
+    void EXPORT srv_lookup_done(struct srv_lookup_result *result);
+
 #ifdef __cplusplus
 }
 #endif
