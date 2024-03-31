@@ -43,4 +43,20 @@ extern "C"
      * @return int
      */
     int EXPORT inbound_stream_filter(stream_filter acceptFilter, void *user, struct context *context);
+
+    /**
+     * @param port
+     * @param context
+     * @return int
+     */
+    int EXPORT inbound_stream(uint16_t port, struct context *context);
+
+    /**
+     * @param stream_id
+     * @param context
+     */
+    void EXPORT close_stream(int stream_id, struct context *context);
+
+#ifdef __cplusplus
 }
+#endif
