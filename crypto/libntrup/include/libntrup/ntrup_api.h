@@ -39,3 +39,18 @@ int crypto_kem_keypair_ref(unsigned char *pk, unsigned char *sk);
  * @return int
  */
 int crypto_kem_enc_avx2(unsigned char *cstr, unsigned char *k, const unsigned char *pk);
+
+/**
+ * @param k
+ * @param cstr
+ * @param sk
+ * @return int
+ */
+int crypto_kem_dec_avx2(unsigned char *k, const unsigned char *cstr, const unsigned char *sk);
+
+/**
+ * @param pk
+ * @param sk
+ * @return int
+ */
+int crypto_kem_keypair_avx2(unsigned char *pk, unsigned char *sk);
