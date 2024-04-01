@@ -19,6 +19,34 @@ extern "C"
 
 #include "ntrup_api.h"
 
+    /**
+     * @param force_no_avx2
+     */
+    void ntru_init(int force_no_avx2);
+
+    /**
+     * @param cstr
+     * @param k
+     * @param pk
+     * @return int
+     */
+    int crypto_kem_enc(unsigned char *cstr, unsigned char *k, const unsigned char *pk);
+
+    /**
+     * @param k
+     * @param cstr
+     * @param sk
+     * @return int
+     */
+    int crypto_kem_dec(unsigned char *k, const unsigned char *cstr, const unsigned char *sk);
+
+    /**
+     * @param pk
+     * @param sk
+     * @return int
+     */
+    int crypto_kem_keypair(unsigned char *pk, unsigned char *sk);
+
 #define crypto_kem_SECRETKEYBYTES 1600
 #define crypto_kem_PUBLICKEYBYTES 1218
 #define crypto_kem_CIPHERTEXTBYTES 1047
