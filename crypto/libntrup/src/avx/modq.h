@@ -44,6 +44,12 @@ static inline modq modq_minusproduct(modq a, modq b, modq c)
     return modq_freeze(A - B * C);
 }
 
+/**
+ * @param a
+ * @param b
+ * @param c
+ * @return modq
+ */
 static inline modq modq_plusproduct(modq a, modq b, modq c)
 {
     crypto_int32 A = a;
@@ -52,6 +58,11 @@ static inline modq modq_plusproduct(modq a, modq b, modq c)
     return modq_freeze(A + B * C);
 }
 
+/**
+ * @param a
+ * @param b
+ * @return modq
+ */
 static inline modq modq_product(modq a, modq b)
 {
     crypto_int32 A = a;
@@ -59,12 +70,21 @@ static inline modq modq_product(modq a, modq b)
     return modq_freeze(A * B);
 }
 
+/**
+ * @param a
+ * @return modq
+ */
 static inline modq modq_square(modq a)
 {
     crypto_int32 A = a;
     return modq_freeze(A * A);
 }
 
+/**
+ * @param a
+ * @param b
+ * @return modq
+ */
 static inline modq modq_sum(modq a, modq b)
 {
     crypto_int32 A = a;
@@ -72,6 +92,10 @@ static inline modq modq_sum(modq a, modq b)
     return modq_freeze(A + B);
 }
 
+/**
+ * @param a1
+ * @return modq
+ */
 static inline modq modq_reciprocal(modq a1)
 {
     modq a2 = modq_square(a1);
@@ -92,6 +116,28 @@ static inline modq modq_reciprocal(modq a1)
     modq a4588 = modq_square(a2294);
     modq a4589 = modq_product(a4588, a1);
     return a4589;
+}
+
+/**
+ * @param num
+ * @param den
+ * @return modq
+ */
+static inline modq modq_quotient(modq num, modq den)
+{
+    return modq_product(num, modq_reciprocal(den));
+}
+
+/**
+ * @param x
+ * @return int
+ */
+static inline int modq_nonzero_mask(modq x)
+{
+    crypto_int32 r = (crypto_uint16)x;
+    r = -r;
+    r >>= 30;
+    return r;
 }
 
 #endif
