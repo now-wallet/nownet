@@ -27,4 +27,13 @@ extern void rq_roundencode(unsigned char *, const modq *);
 #define rq_decoderounded crypto_kem_sntrup4591761_avx_rq_decoderounded
 extern void rq_decoderounded(modq *, const unsigned char *);
 
+#define rq_round3 crypto_kem_sntrup4591761_avx_rq_round3
+extern void rq_round3(modq *, const modq *);
+
+#define rq_mod3 crypto_kem_sntrup4591761_avx_rq_mod3
+extern void rq_mod3(small *, const modq *);
+
+#define rq_mult crypto_kem_sntrup4591761_avx_rq_mult
+extern void rq_mult(modq *, const modq *, const small *);
+
 #endif
