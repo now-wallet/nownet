@@ -36,4 +36,7 @@ extern void rq_mod3(small *, const modq *);
 #define rq_mult crypto_kem_sntrup4591761_avx_rq_mult
 extern void rq_mult(modq *, const modq *, const small *);
 
+#define rq_recip3 crypto_kem_sntrup4591761_avx_rq_recip3
+int rq_recip3(modq *, const small *);
+
 #endif
