@@ -19,6 +19,20 @@ void swap(void *x, void *y, int bytes, int mask)
         y = 32 + (char *)y;
         bytes -= 32;
     }
+
+    while (bytes > 0)
+    {
+        char xi = *(char *)x;
+        char yi = *(char *)y;
+        char t = c & (xi ^ yi);
+        xi ^= t;
+        yi ^= t;
+        *(char *)x = xi;
+        *(char *)y = yi;
+        ++x;
+        ++y;
+        --bytes;
+    }
 }
 
 #endif
