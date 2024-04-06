@@ -16,6 +16,10 @@
 #include <sodium/crypto_uint16.h>
 #include <sodium/crypto_int32.h>
 
+/**
+ * @param r
+ * @return int
+ */
 int r3_weight_mask(const small *r)
 {
     int weight;
@@ -34,6 +38,10 @@ int r3_weight_mask(const small *r)
     tally = _mm256_hadd_epi16(tally, tally);
 
     weight = _mm_extract_epi16(_mm256_extracti128_si256(tally, 0), 0) + _mm_extract_epi16(_mm256_extracti128_si256(tally, 1), 0);
+
+    weight -= w;
+
+    return (-(crypto_int32)(crypto_uint16)weight) >> 30;
 }
 
 #endif
