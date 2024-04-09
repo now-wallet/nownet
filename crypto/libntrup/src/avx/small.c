@@ -35,4 +35,35 @@ void small_encode(unsigned char *c, const small *f)
     *c++ = c0;
 }
 
+/**
+ * @param f
+ * @param c
+ */
+void small_decode(small *f, const unsigned char *c)
+{
+    unsigned char c0;
+    int i;
+
+    for (i = 0; i < p / 4; ++i)
+    {
+        c0 = *c++;
+        *f++ = ((small)(c0 & 3)) - 1;
+        c0 >>= 2;
+        *f++ = ((small)(c0 & 3)) - 1;
+        c0 >>= 2;
+        *f++ = ((small)(c0 & 3)) - 1;
+        c0 >>= 2;
+        *f++ = ((small)(c0 & 3)) - 1;
+    }
+    c0 = *c++;
+    *f++ = ((small)(c0 & 3)) - 1;
+    *f++ = 0;
+    *f++ = 0;
+    *f++ = 0;
+    *f++ = 0;
+    *f++ = 0;
+    *f++ = 0;
+    *f++ = 0;
+}
+
 #endif
